@@ -7,12 +7,22 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 class MainViewModel: NSObject {
   var service: WeatherServiceProtocol?
   weak var view: MainViewProtocol?
   private var data = WeatherResponseModel()
   private var locationManager = CLLocationManager()
+  private var loaded = false
+  
+  private enum Strings {
+    static let ErrorTitle = "Error"
+    static let locationErrorMessage = "You need to authorize OpenWeatherMap to use your location."
+    static let locationErrorDoneButton = "Settings"
+    static let genericErrorMessage = "An error occourred."
+    static let genericErrorDoneButton = "Close"
+  }
   
   private func configureUI() {
     let weather: WeatherModel = data.weather[0]
@@ -35,6 +45,21 @@ class MainViewModel: NSObject {
       locationManager.startUpdatingLocation()
     }
   }
+  
+  private func showError() {
+    view?.showAlert(title: Strings.ErrorTitle, message: Strings.genericErrorMessage, doneButtonTitle: Strings.genericErrorDoneButton, doneCallback: {
+      exit(0) //TODO: Improve
+    })
+  }
+  
+  private func showLocationError() {
+    view?.showAlert(title: Strings.ErrorTitle, message: Strings.locationErrorMessage, doneButtonTitle: Strings.locationErrorDoneButton, doneCallback: {
+      UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:],
+                                completionHandler: { _ in
+        exit(0) //TODO: Improve
+      })
+    })
+  }
 }
 
 extension MainViewModel: MainViewModelProtocol {
@@ -42,9 +67,11 @@ extension MainViewModel: MainViewModelProtocol {
     view?.fullScreenLoading(hide: false)
     
     configureLocation()
-    
+  }
+  
+  func viewWillAppear(animated: Bool) {
     if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
-      //TODO: Redirect to settings
+      showLocationError()
     }
   }
 }
@@ -57,22 +84,26 @@ extension MainViewModel: WeatherServiceResponseProtocol {
   }
   
   func getWeatherError() {
-    
+    showError()
   }
 }
 
 extension MainViewModel: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-
-    print(coordinate)
-    service?.getWeather(lat: coordinate.latitude, lon: coordinate.longitude)
+    if !loaded {
+      guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else {
+        showError()
+        return
+      }
+      
+      service?.getWeather(lat: coordinate.latitude, lon: coordinate.longitude)
+      loaded = true
+    }
   }
   
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    
     if manager.authorizationStatus == .denied || manager.authorizationStatus == .restricted {
-      //TODO: Show error
+      showLocationError()
     }
   }
 }

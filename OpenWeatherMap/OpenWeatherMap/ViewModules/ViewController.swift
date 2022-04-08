@@ -25,6 +25,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     super.viewDidLoad()
     viewModel.viewDidLoad()
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    viewModel.viewWillAppear(animated: animated)
+  }
 }
 
 extension ViewController: MainViewProtocol {
@@ -44,6 +49,16 @@ extension ViewController: MainViewProtocol {
     case .wind:
       windLabel.text = data
     }
+  }
+  
+  func showAlert(title: String, message: String, doneButtonTitle: String, doneCallback: @escaping () -> Void) {
+    let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+    
+    refreshAlert.addAction(UIAlertAction(title: doneButtonTitle, style: .default, handler: { (action: UIAlertAction!) in
+      doneCallback()
+    }))
+    
+    present(refreshAlert, animated: true, completion: nil)
   }
 }
 

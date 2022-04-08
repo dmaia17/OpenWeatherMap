@@ -18,6 +18,7 @@ enum MainViewField {
 
 protocol MainViewProtocol: ViewInterface {
   func updateData(field: MainViewField, data: String)
+  func showAlert(title: String, message: String, doneButtonTitle: String, doneCallback: @escaping () -> Void)
 }
 
 protocol MainViewModelProtocol: ViewModelInterface {
