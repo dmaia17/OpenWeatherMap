@@ -25,6 +25,8 @@
 		51A031BD2800B8960014AB89 /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A031BC2800B8960014AB89 /* ViewInterface.swift */; };
 		51A031BF2800B8C30014AB89 /* ViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A031BE2800B8C30014AB89 /* ViewModelInterface.swift */; };
 		51A031C22800BB960014AB89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A031C12800BB960014AB89 /* Constants.swift */; };
+		51A031C42800C7490014AB89 /* WeatherMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A031C32800C7490014AB89 /* WeatherMainModel.swift */; };
+		51A031C62800C79C0014AB89 /* WeatherWindModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A031C52800C79C0014AB89 /* WeatherWindModel.swift */; };
 		768BDBB4046DD9B36DABF381 /* Pods_OpenWeatherMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90617B379DAD8F67820AA14A /* Pods_OpenWeatherMapTests.framework */; };
 		9053F62861DB3540B92E67FC /* Pods_OpenWeatherMap_OpenWeatherMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BED8E1C5B4C1E53C5D65E3D /* Pods_OpenWeatherMap_OpenWeatherMapUITests.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		51A031BC2800B8960014AB89 /* ViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
 		51A031BE2800B8C30014AB89 /* ViewModelInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelInterface.swift; sourceTree = "<group>"; };
 		51A031C12800BB960014AB89 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		51A031C32800C7490014AB89 /* WeatherMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMainModel.swift; sourceTree = "<group>"; };
+		51A031C52800C79C0014AB89 /* WeatherWindModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWindModel.swift; sourceTree = "<group>"; };
 		59EA1062619D3447FC2FDDBD /* Pods-OpenWeatherMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMap.debug.xcconfig"; path = "Target Support Files/Pods-OpenWeatherMap/Pods-OpenWeatherMap.debug.xcconfig"; sourceTree = "<group>"; };
 		6213E73A27F728F423E5635C /* Pods-OpenWeatherMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMapTests.debug.xcconfig"; path = "Target Support Files/Pods-OpenWeatherMapTests/Pods-OpenWeatherMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62AAA88DF91BB2A93681E7F5 /* Pods-OpenWeatherMap-OpenWeatherMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenWeatherMap-OpenWeatherMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-OpenWeatherMap-OpenWeatherMapUITests/Pods-OpenWeatherMap-OpenWeatherMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 			children = (
 				51A031B12800B6FF0014AB89 /* WeatherModel.swift */,
 				51A031B32800B7B00014AB89 /* WeatherResponseModel.swift */,
+				51A031C32800C7490014AB89 /* WeatherMainModel.swift */,
+				51A031C52800C79C0014AB89 /* WeatherWindModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -484,7 +490,9 @@
 				51A0317D2800B55E0014AB89 /* AppDelegate.swift in Sources */,
 				51A031BA2800B8400014AB89 /* MainViewInterface.swift in Sources */,
 				51A031BD2800B8960014AB89 /* ViewInterface.swift in Sources */,
+				51A031C62800C79C0014AB89 /* WeatherWindModel.swift in Sources */,
 				51A031B22800B6FF0014AB89 /* WeatherModel.swift in Sources */,
+				51A031C42800C7490014AB89 /* WeatherMainModel.swift in Sources */,
 				51A031B42800B7B00014AB89 /* WeatherResponseModel.swift in Sources */,
 				51A031B62800B80E0014AB89 /* WeatherService.swift in Sources */,
 				51A031BF2800B8C30014AB89 /* ViewModelInterface.swift in Sources */,

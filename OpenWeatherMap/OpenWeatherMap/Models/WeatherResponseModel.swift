@@ -8,5 +8,8 @@
 import Foundation
 
 struct WeatherResponseModel: Codable {
+  var name: String = ""
   var weather: [WeatherModel] = []
+  var main: WeatherMainModel = WeatherMainModel()
+  var wind: WeatherWindModel = WeatherWindModel()
 }

@@ -21,10 +21,8 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    viewModel.viewDidLoad()
   }
-
-
 }
 
 extension ViewController: MainViewProtocol {
@@ -33,6 +31,7 @@ extension ViewController: MainViewProtocol {
     case .city:
       cityLabel.text = data
     case .icon:
+      print(data)
       weatherImageView.setImageForURL(data)
     case .weather:
       weatherLabel.text = data

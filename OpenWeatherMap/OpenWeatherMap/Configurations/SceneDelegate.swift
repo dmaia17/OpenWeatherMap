@@ -11,15 +11,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var window: UIWindow?
 
-
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     //guard let _ = (scene as? UIWindowScene) else { return }
     
-    if let _ = scene as? UIWindowScene {
-      let viewController = ViewController()
+    if let windowScene = scene as? UIWindowScene {
+      let window = UIWindow(windowScene: windowScene)
+      
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
       let viewModel = MainViewModel()
       let service = WeatherService()
       
@@ -27,6 +29,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       viewModel.service = service
       viewModel.view = viewController
       service.delegate = viewModel
+      
+      window.rootViewController = viewController
+      
+      self.window = window
+      window.makeKeyAndVisible()
     }
   }
 
