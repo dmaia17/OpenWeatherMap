@@ -6,3 +6,24 @@
 //
 
 import Foundation
+
+class MainViewModel {
+  var service: WeatherServiceProtocol?
+  weak var view: MainViewProtocol?
+}
+
+extension MainViewModel: MainViewModelProtocol {
+  func viewDidLoad() {
+    
+  }
+}
+
+extension MainViewModel: WeatherServiceResponseProtocol {
+  func getWeatherSuccess(response: WeatherResponseModel) {
+    
+  }
+  
+  func getWaatherError() {
+    
+  }
+}

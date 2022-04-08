@@ -17,7 +17,7 @@ enum MainViewField {
 }
 
 protocol MainViewProtocol: ViewInterface {
-  func updateData(data: MainViewData)
+  func updateData(field: MainViewField, data: String)
 }
 
 protocol MainViewModelProtocol: ViewModelInterface {

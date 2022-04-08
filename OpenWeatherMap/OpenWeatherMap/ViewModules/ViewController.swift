@@ -17,8 +17,11 @@ class ViewController: UIViewController {
   @IBOutlet weak var dailyWeatherLabel: UILabel!
   @IBOutlet weak var windLabel: UILabel!
   
+  var viewModel: MainViewModelProtocol!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
   }
 
 
