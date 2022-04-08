@@ -22,17 +22,27 @@ class MainViewModel: NSObject {
     static let locationErrorDoneButton = "Settings"
     static let genericErrorMessage = "An error occourred."
     static let genericErrorDoneButton = "Close"
+    static let iconURL = "http://openweathermap.org/img/wn/%@@2x.png"
+    static let weatherFormat = "%@°"
+    static let dailyFormat = "Low: %@° High: %@°"
+    static let windFormat = "Wind: %@ (%@)"
   }
   
   private func configureUI() {
-    let weather: WeatherModel = data.weather[0]
+    if data.weather.isEmpty {
+      showError()
+      return
+    }
+    
+    let dailyValue = String(format: Strings.dailyFormat, String(format: "%.0f", data.main.temp_min), String(format: "%.0f", data.main.temp_max))
+    let windValue = String(format: Strings.windFormat, String(format: "%.0f", data.wind.speed), String(format: "%.0f", data.wind.deg))
     
     view?.updateData(field: .city, data: data.name)
-    view?.updateData(field: .icon, data: "http://openweathermap.org/img/wn/\(weather.icon)@2x.png")
-    view?.updateData(field: .weather, data: String(data.main.temp))
-    view?.updateData(field: .description, data: data.weather.description)
-    view?.updateData(field: .daily, data: "\(data.main.temp_min) - \(data.main.temp_max)")
-    view?.updateData(field: .wind, data: "\(data.wind.speed) - \(data.wind.deg)")
+    view?.updateData(field: .icon, data: String(format: Strings.iconURL, data.weather[0].icon))
+    view?.updateData(field: .weather, data: String(format: Strings.weatherFormat, String(format: "%.0f", data.main.temp)))
+    view?.updateData(field: .description, data: data.weather[0].description)
+    view?.updateData(field: .daily, data: dailyValue)
+    view?.updateData(field: .wind, data: windValue)
   }
   
   private func configureLocation() {

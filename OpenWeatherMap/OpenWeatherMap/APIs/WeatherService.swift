@@ -26,7 +26,7 @@ class WeatherService: WeatherServiceProtocol {
   func getWeather(lat: Double, lon: Double) {
     let API_KEY = Constants.API_KEY
     
-    AF.request("https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(API_KEY)")
+    AF.request("https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=\(lat)&lon=\(lon)&appid=\(API_KEY)")
       .validate()
       .responseDecodable(of: WeatherResponseModel.self) { response in
         guard let response = response.value else {

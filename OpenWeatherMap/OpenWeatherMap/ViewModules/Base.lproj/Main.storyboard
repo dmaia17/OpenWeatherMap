@@ -23,7 +23,6 @@
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45e-3e-uR1">
                                 <rect key="frame" x="143" y="128.5" width="128" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="Bcp-BQ-NWx"/>
                                     <constraint firstAttribute="height" constant="128" id="rrc-3c-PjW"/>
@@ -55,7 +54,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.096845567840890823" green="0.096845567840890823" blue="0.096845567840890823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.20131966502396104" green="0.20131966502396104" blue="0.20131966502396104" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="45e-3e-uR1" firstAttribute="top" secondItem="4mM-AO-6Bj" secondAttribute="bottom" constant="32" id="3qk-Rf-vex"/>
                             <constraint firstItem="4mM-AO-6Bj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="4ZY-bF-J99"/>
