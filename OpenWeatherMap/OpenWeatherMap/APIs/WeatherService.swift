@@ -17,7 +17,7 @@ protocol WeatherServiceProtocol {
 
 protocol WeatherServiceResponseProtocol: AnyObject {
   func getWeatherSuccess(response: WeatherResponseModel)
-  func getWaatherError()
+  func getWeatherError()
 }
 
 class WeatherService: WeatherServiceProtocol {
@@ -30,7 +30,7 @@ class WeatherService: WeatherServiceProtocol {
       .validate()
       .responseDecodable(of: WeatherResponseModel.self) { response in
         guard let response = response.value else {
-          self.delegate?.getWaatherError()
+          self.delegate?.getWeatherError()
           return
         }
         print(response)

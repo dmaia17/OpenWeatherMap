@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
 
-class MainViewModel {
+class MainViewModel: NSObject {
   var service: WeatherServiceProtocol?
   weak var view: MainViewProtocol?
   private var data = WeatherResponseModel()
+  private var locationManager = CLLocationManager()
   
   private func configureUI() {
     let weather: WeatherModel = data.weather[0]
@@ -23,12 +25,27 @@ class MainViewModel {
     view?.updateData(field: .wind, data: "\(data.wind.speed) - \(data.wind.deg)")
   }
   
+  private func configureLocation() {
+    if CLLocationManager.locationServicesEnabled() {
+      locationManager = CLLocationManager()
+      locationManager.delegate = self
+      locationManager.desiredAccuracy = kCLLocationAccuracyBest
+      locationManager.requestAlwaysAuthorization()
+      locationManager.distanceFilter = 100
+      locationManager.startUpdatingLocation()
+    }
+  }
 }
 
 extension MainViewModel: MainViewModelProtocol {
   func viewDidLoad() {
     view?.fullScreenLoading(hide: false)
-    service?.getWeather(lat: 34.0194704, lon: -118.491227)
+    
+    configureLocation()
+    
+    if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
+      //TODO: Redirect to settings
+    }
   }
 }
 
@@ -39,7 +56,23 @@ extension MainViewModel: WeatherServiceResponseProtocol {
     view?.fullScreenLoading(hide: true)
   }
   
-  func getWaatherError() {
+  func getWeatherError() {
     
+  }
+}
+
+extension MainViewModel: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+
+    print(coordinate)
+    service?.getWeather(lat: coordinate.latitude, lon: coordinate.longitude)
+  }
+  
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    
+    if manager.authorizationStatus == .denied || manager.authorizationStatus == .restricted {
+      //TODO: Show error
+    }
   }
 }

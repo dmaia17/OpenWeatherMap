@@ -7,8 +7,9 @@
 
 import UIKit
 import SGImageCache
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var weatherImageView: UIImageView!
@@ -18,6 +19,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var windLabel: UILabel!
   
   var viewModel: MainViewModelProtocol!
+  var locationManager: CLLocationManager!
   
   override func viewDidLoad() {
     super.viewDidLoad()
