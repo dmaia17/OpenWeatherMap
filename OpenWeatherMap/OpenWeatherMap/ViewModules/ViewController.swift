@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SGImageCache
 
 class ViewController: UIViewController {
   
@@ -21,5 +22,24 @@ class ViewController: UIViewController {
   }
 
 
+}
+
+extension ViewController: MainViewProtocol {
+  func updateData(field: MainViewField, data: String) {
+    switch field {
+    case .city:
+      cityLabel.text = data
+    case .icon:
+      weatherImageView.setImageForURL(data)
+    case .weather:
+      weatherLabel.text = data
+    case .description:
+      descriptionLabel.text = data
+    case .daily:
+      dailyWeatherLabel.text = data
+    case .wind:
+      windLabel.text = data
+    }
+  }
 }
 

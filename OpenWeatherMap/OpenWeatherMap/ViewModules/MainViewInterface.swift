@@ -7,8 +7,17 @@
 
 import Foundation
 
-protocol MainViewInterface: ViewInterface {
-  
+enum MainViewField {
+  case city
+  case icon
+  case weather
+  case description
+  case daily
+  case wind
+}
+
+protocol MainViewProtocol: ViewInterface {
+  func updateData(data: MainViewData)
 }
 
 protocol MainViewModelProtocol: ViewModelInterface {
