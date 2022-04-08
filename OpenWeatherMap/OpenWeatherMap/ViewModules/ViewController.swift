@@ -7,7 +7,6 @@
 
 import UIKit
 import SGImageCache
-import CoreLocation
 
 class ViewController: UIViewController {
   

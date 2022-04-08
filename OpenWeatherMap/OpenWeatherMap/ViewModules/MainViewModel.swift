@@ -12,6 +12,7 @@ import UIKit
 class MainViewModel: NSObject {
   var service: WeatherServiceProtocol?
   weak var view: MainViewProtocol?
+  
   private var data = WeatherResponseModel()
   private var locationManager = CLLocationManager()
   private var loaded = false
