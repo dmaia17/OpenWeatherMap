@@ -49,13 +49,13 @@ extension ViewController: MainViewProtocol {
   }
   
   func showAlert(title: String, message: String, doneButtonTitle: String, doneCallback: @escaping () -> Void) {
-    let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
     
-    refreshAlert.addAction(UIAlertAction(title: doneButtonTitle, style: .default, handler: { (action: UIAlertAction!) in
+    alert.addAction(UIAlertAction(title: doneButtonTitle, style: .default, handler: { (action: UIAlertAction!) in
       doneCallback()
     }))
     
-    present(refreshAlert, animated: true, completion: nil)
+    present(alert, animated: true, completion: nil)
   }
 }
 
